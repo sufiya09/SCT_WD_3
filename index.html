@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XO Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <button id="themeBtn" class="fab" style="right:70px" title="Theme (T)">☾</button>
+  <button id="soundBtn" class="fab" title="Sound (S)">🔔</button>
+
+  <!-- ============ START SCREEN ============ -->
+  <section id="menu" class="screen">
+    <div class="menu-wrap">
+      <div class="logo"><span class="lx">X</span><span class="lo">O</span></div>
+      <h1>XO Arena</h1>
+      <p class="tag">Choose how you want to play</p>
+
+      <div class="modes">
+        <button class="mode" data-mode="pvc"><span class="ico">🤖</span><b>vs Computer</b><small>Solo challenge</small></button>
+        <button class="mode" data-mode="pvp"><span class="ico">👥</span><b>2 Players</b><small>Same screen</small></button>
+      </div>
+
+      <div class="panel">
+        <div class="field">
+          <label>Names</label>
+          <div class="names">
+            <input id="p1" maxlength="12" placeholder="Player 1" />
+            <input id="p2" maxlength="12" placeholder="Player 2" data-pvp />
+          </div>
+        </div>
+        <div class="field" data-pvc>
+          <label>Difficulty</label>
+          <div class="seg" data-key="difficulty">
+            <button data-val="easy">Easy</button><button data-val="medium">Medium</button><button data-val="hard">Hard</button>
+          </div>
+        </div>
+        <div class="field" data-pvc>
+          <label>You play as</label>
+          <div class="seg" data-key="human">
+            <button data-val="X">X (first)</button><button data-val="O">O</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Match length</label>
+          <div class="seg" data-key="bestOf">
+            <button data-val="1">Single</button><button data-val="3">Best of 3</button><button data-val="5">Best of 5</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="startBtn" class="start">Start game</button>
+      <p class="rec" id="rec" data-pvc></p>
+    </div>
+  </section>
+
+  <!-- ============ GAME SCREEN ============ -->
+  <section id="game" class="screen" hidden>
+    <div class="topline">
+      <button id="menuBtn" class="ghost">← Menu</button>
+      <div class="round" id="roundInfo"></div>
+    </div>
+
+    <div class="arena">
+      <div class="pcard px" id="cardX">
+        <div class="av">X</div><div class="pname" id="nX"></div><div class="pscore" id="sX">0</div>
+      </div>
+
+      <div class="center">
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="board" class="board"></div>
+        <div class="bar">
+          <button id="undoBtn" class="ghost">↶ Undo</button>
+          <button id="hintBtn" class="ghost">💡 Hint</button>
+          <button id="restartBtn" class="ghost">⟳ Restart</button>
+        </div>
+        <div class="log" id="log"></div>
+      </div>
+
+      <div class="pcard po" id="cardO">
+        <div class="av">O</div><div class="pname" id="nO"></div><div class="pscore" id="sO">0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULT POPUP ============ -->
+  <div id="modal" class="modal" hidden>
+    <div class="dialog">
+      <h2 id="mTitle"></h2>
+      <p id="mText"></p>
+      <div class="row">
+        <button id="mMenu" class="ghost">Menu</button>
+        <button id="mNext" class="start">Next round</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
